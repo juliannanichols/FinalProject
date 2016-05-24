@@ -17,20 +17,32 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		JMenuBar menuBar;
 		JMenu menu;
 		JMenuItem menuItem;
-		JMenu subMenu;
+		//JMenu subMenu;
 		
 		menuBar = new JMenuBar();
-
-		menu = new JMenu(""); // title
-		menuItem = new JMenuItem(""); // menu item
-		menuItem.setActionCommand("");
+		
+		menu = new JMenu("Options"); // title
+		menuItem = new JMenuItem("Switch Deck"); // menu item
+		menuItem.setActionCommand("Switch Deck");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 		
 		menuBar.add(menu);
 		
+		menuBar.add(Box.createHorizontalGlue()); //putting help on the far right
+		
+		menu = new JMenu("Help");
+		menuItem = new JMenuItem("About");
+		menuItem.setActionCommand("About");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		
+		menuBar.add(menu);
+		
+		this.setJMenuBar(menuBar);
 		this.setSize(600, 600);
 		this.setVisible(true);
+		
 	}
 	
 	/**
