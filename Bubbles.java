@@ -12,8 +12,10 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	String input = null;
+	ImageIcon stars = new ImageIcon("Stars.jpeg");
+	ImageIcon flowers = new ImageIcon("Flowers.jpg");
 	String [] switchDeck = { "Animals" , "Plants" , "Letters" , "Colors" };
-	ArrayList<String> cardBack = new ArrayList<String>();
+	Object [] cardBack = {  };
 	
 	public Bubbles() {
 		super();
@@ -21,7 +23,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		JMenuBar menuBar;
 		JMenu menu;
 		JMenuItem menuItem;
-		JMenu subMenu;
 		
 		menuBar = new JMenuBar();
 		
@@ -37,8 +38,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		menu.add(menuItem);
 		
 		menuBar.add(menu);
-		
-		
 		
 		menuBar.add(Box.createHorizontalGlue()); //putting help on the far right
 		
@@ -63,11 +62,12 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		
 		switch (e.getActionCommand()) {
 		case "Switch Deck":
-			input = (String) JOptionPane.showInputDialog(null, "Choose now...",
+			input = (String)JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
 			        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[1]);
 			break;
 		case "Change Card Back":
-			
+			input = (String)JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
+			        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[1]);
 			break;
 		}
 	}
