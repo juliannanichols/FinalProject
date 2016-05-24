@@ -12,7 +12,7 @@ public class Potato extends JPanel implements ActionListener, Serializable {
 		
 		
 		
-		
+		System.out.println( "Hello" );
 	}
 	
 	public void actionPerformed(ActionEvent e) {
