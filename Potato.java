@@ -11,6 +11,8 @@ public class Potato extends JPanel implements ActionListener, Serializable {
 		super();
 		
 		
+		
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
