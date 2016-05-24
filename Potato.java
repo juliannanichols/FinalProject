@@ -21,56 +21,56 @@ public class Potato extends JPanel implements ActionListener, Serializable {
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
         
-        button = new JButton( "Rectangle" );
-        button.setActionCommand( "rectangle" );
+        button = new JButton( "Card1" );
+        button.setActionCommand( "card1" );
         button.addActionListener( this );
         matchingPane.add( button );
         
-        button = new JButton( "Circle" );
-        button.setActionCommand( "circle" );
+        button = new JButton( "Card2" );
+        button.setActionCommand( "card2" );
         button.addActionListener( this );
         matchingPane.add( button );
         
-        button = new JButton( "Line" );
-        button.setActionCommand( "line" );
+        button = new JButton( "Card3" );
+        button.setActionCommand( "card3" );
         button.addActionListener( this );
         matchingPane.add( button );
         
-        button = new JButton( "Word Box" );
-        button.setActionCommand( "string" );
+        button = new JButton( "Card4" );
+        button.setActionCommand( "card4" );
         button.addActionListener( this );
         matchingPane.add( button );
         
-        button = new JButton( "Star" );
-        button.setActionCommand( "star" );
+        button = new JButton( "Card5" );
+        button.setActionCommand( "card5" );
         button.addActionListener( this );
         matchingPane.add( button );
         
-        button = new JButton( "Arc" );
-        button.setActionCommand( "arc" );
+        button = new JButton( "Card6" );
+        button.setActionCommand( "card6" );
         button.addActionListener( this );
         matchingPane.add( button );
         
-        button = new JButton( "Move" );
-        button.setActionCommand( "move" );
+        button = new JButton( "Card7" );
+        button.setActionCommand( "card7" );
         button.addActionListener( this );
         matchingPane.add( button );
         
-        button = new JButton( "fake button" );
-        //button.setActionCommand( "move" );
-        //button.addActionListener( this );
+        button = new JButton( "Card8" );
+        button.setActionCommand( "card8" );
+        button.addActionListener( this );
         matchingPane.add( button );
        
         
         this.add( matchingPane, BorderLayout.WEST );
-        
+ 
         this.setVisible( true );
 	}
 	
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		//this needs code
 	}
 	
 }
