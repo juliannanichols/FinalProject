@@ -12,10 +12,10 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	String input = null;
-	ImageIcon stars = new ImageIcon("Stars.jpeg");
-	ImageIcon flowers = new ImageIcon("Flowers.jpg");
 	String [] switchDeck = { "Animals" , "Plants" , "Letters" , "Colors" };
-	Object [] cardBack = {  };
+	String [] cardBack = { "Flowers" , "Stars" };
+	int [] numberCards = { 6 , 8 , 10 , 12 , 14 , 16 , 18 , 20}; 
+	int numCards = 6;
 	
 	public Bubbles() {
 		super();
@@ -33,7 +33,12 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		menu.add(menuItem);
 		
 		menuItem = new JMenuItem("Change Card Back"); // menu item
-		menuItem.setActionCommand("Change Card Back");
+		menuItem.setActionCommand("Card Back");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		
+		menuItem = new JMenuItem("Change Number of Cards"); // menu item
+		menuItem.setActionCommand("Number");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 		
@@ -62,12 +67,40 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		
 		switch (e.getActionCommand()) {
 		case "Switch Deck":
-			input = (String)JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
-			        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[1]);
+			input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
+					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[1]);
+			switch (input) {
+			case "Animals":
+				//assign the deck, call on the method that randomizes
+				break;
+			case "Plants":
+
+				break;
+			case "Letters":
+
+				break;
+			case "Colors":
+
+				break;
+			}
 			break;
-		case "Change Card Back":
-			input = (String)JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
-			        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[1]);
+		case "Card Back":
+			input = (String) JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
+					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[1]);
+			switch (input) {
+			case "":
+				//setting variable equal 
+				break;
+			case "":
+				
+				break;
+			case "";
+				break;
+			}
+			break;
+		case "Number":
+			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
+					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards, numberCards[1]);
 			break;
 		}
 	}
