@@ -11,10 +11,10 @@ import javax.swing.*;
 public class Bubbles extends JFrame implements ActionListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	String input = null;
+	String [] numberCards = { "6" , "8" , "10" , "12" , "14" , "16" , "18" , "20" };
 	String [] switchDeck = { "Animals" , "Plants" , "Letters" , "Colors" };
-	String [] cardBack = { "Flowers" , "Stars" };
-	int [] numberCards = { 6 , 8 , 10 , 12 , 14 , 16 , 18 , 20}; 
+	String [] cardBack = { "Classic" , "Stars" , "Flowers" };
+	String input = null;
 	int numCards = 6;
 	
 	public Bubbles() {
@@ -69,39 +69,18 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		case "Switch Deck":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[1]);
-			switch (input) {
-			case "Animals":
-				//assign the deck, call on the method that randomizes
-				break;
-			case "Plants":
-
-				break;
-			case "Letters":
-
-				break;
-			case "Colors":
-
-				break;
-			}
-			break;
+			break; //break for "switch deck" block
+				
 		case "Card Back":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[1]);
-			switch (input) {
-			case "":
-				//setting variable equal 
-				break;
-			case "":
-				
-				break;
-			case "";
-				break;
-			}
-			break;
+			break; //break for "card back" block
+			
 		case "Number":
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
-					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards, numberCards[1]);
-			break;
+					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[1]);
+			numCards = Integer.parseInt(input);
+			break; //break for "number" block
 		}
 	}
 
