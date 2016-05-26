@@ -8,9 +8,8 @@ public class Potato extends JPanel implements ActionListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	JPanel matchingPane = new JPanel(); 
-	JButton[] cards = new JButton[6];
 	Bubbles bubble = new Bubbles();
-	int numCards = 0;
+	JButton[] cards = new JButton[bubble.numCards];
 	
 	public Potato( Bubbles bub ) {
 		super();
@@ -22,15 +21,12 @@ public class Potato extends JPanel implements ActionListener, Serializable {
         this.setBorder( BorderFactory.createEtchedBorder() ); // may take this out
         JButton button;
         
-        numCards = bubble.numCards;
-        
-        for( int i = 0; i < numCards; i++){
+        for( int i = 0; i < cards.length; i++){
         	button = new JButton( "Card" + i );
         	button.setActionCommand( "card" + i );
         	button.addActionListener( this );
         	matchingPane.add( button );
         }
-        
         
         this.add( matchingPane, BorderLayout.WEST );
  
@@ -40,7 +36,7 @@ public class Potato extends JPanel implements ActionListener, Serializable {
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		//for( int i = 0; )
+		//for( int i = 0; ) need array of 
 	}
 	
 }
