@@ -77,8 +77,10 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			break; //break for "card back" block
 			
 		case "Number":
+			//System.out.println("hello number");
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[1]);
+			//System.out.println("sending " + input + " to numCards");
 			numCards = Integer.parseInt(input);
 			break; //break for "number" block
 		}

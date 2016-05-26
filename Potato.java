@@ -16,20 +16,19 @@ public class Potato extends JPanel implements ActionListener, Serializable {
 		
 		bubble = bub;
 		
-		this.setSize( 200, 1000 );
+		this.setSize( 200, 500 );
         this.setLayout( new GridLayout( 2, 6 ) );
         this.setBorder( BorderFactory.createEtchedBorder() ); // may take this out
         JButton button;
         
-        for( int i = 0; i < cards.length; i++){
+        for( int i = 0; i < cards.length; i++) {
         	button = new JButton( "Card" + i );
-        	button.setActionCommand( "card" + i );
+        	button.setActionCommand( "Card" + i );
         	button.addActionListener( this );
         	matchingPane.add( button );
         }
         
-        this.add( matchingPane, BorderLayout.WEST );
- 
+        this.add(matchingPane, BorderLayout.WEST);
         this.setVisible( true );
 	}
 	
