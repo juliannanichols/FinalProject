@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
@@ -12,10 +13,13 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	String [] numberCards = { "6" , "8" , "10" , "12" , "14" , "16" , "18" , "20" };
-	String [] switchDeck = { "Animals" , "Plants" , "Letters" , "Colors" };
+	String [] switchDeck = { "Animals" , "Plants" , "Traditional" , "Food" };
 	String [] cardBack = { "Classic" , "Stars" , "Flowers" };
 	String input = null;
+	Potato matching = new Potato();
 	int numCards = 6;
+	JButton button;
+	JButton[] cards = new JButton[numCards];
 	
 	public Bubbles() {
 		super();
@@ -23,6 +27,12 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		JMenuBar menuBar;
 		JMenu menu;
 		JMenuItem menuItem;
+		
+		this.setLayout(new BorderLayout());
+		this.setName("JMenuFrame");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		this.add(matching, BorderLayout.CENTER);
 		
 		menuBar = new JMenuBar();
 		
@@ -54,6 +64,14 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		
 		menuBar.add(menu);
 		
+		//creating the buttons
+		for( int i = 0; i < cards.length; i++) {
+        	button = new JButton( "Card " + i );
+        	button.setActionCommand( "Card " + i );
+        	button.addActionListener( this );
+        	matching.add( button );
+        }
+		
 		this.setJMenuBar(menuBar);
 		this.setSize(600, 600);
 		this.setVisible(true);
@@ -77,10 +95,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			break; //break for "card back" block
 			
 		case "Number":
-			//System.out.println("hello number");
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[1]);
-			//System.out.println("sending " + input + " to numCards");
 			numCards = Integer.parseInt(input);
 			break; //break for "number" block
 		}
