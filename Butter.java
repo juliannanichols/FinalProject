@@ -1,5 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.*; //needed to use Random
 import javax.swing.*;
 import com.sun.prism.*; //needed to use Image
@@ -11,7 +10,7 @@ import com.sun.prism.*; //needed to use Image
  * @author Julianna Nichols
  * @author Isabelle Schroeder
  */
-public class Butter implements ActionListener{
+public class Butter implements ActionListener {
 	
 	Bubbles bub = new Bubbles();
 	ImageIcon[] traditional = new ImageIcon[10];
