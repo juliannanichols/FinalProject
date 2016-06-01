@@ -11,6 +11,8 @@ import javax.swing.*;
 
 public class Potato extends JPanel implements ActionListener, Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	public Potato() {
 		this.setLayout( new GridLayout( 2, 6 ) );
 	}

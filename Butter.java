@@ -12,7 +12,7 @@ import com.sun.prism.*; //needed to use Image
  */
 public class Butter implements ActionListener {
 	
-	Bubbles bub = new Bubbles();
+	//Bubbles bub = new Bubbles();
 	ImageIcon[] traditional = new ImageIcon[10];
 	ImageIcon[] animal = new ImageIcon[10];
 	ImageIcon[] plant = new ImageIcon[10];
@@ -41,20 +41,23 @@ public class Butter implements ActionListener {
 	 * 
 	 * @param name
 	 */
-	public void setCards( String name ){
-		
-		name = bub.input;
+	public void setCards( String name, int numCards ){
 		
 		switch(name){
 		case "Animals":
-			//not sure if ths is right at all
-			//trying to get it to randomly pick
-			//then assign to buttons
-			for(int i = 0; i < animal.length; i++ ) {
+			for(int i = 0; i < numCards/2; i++ ) {
 				int rnd = new Random().nextInt(animal.length);
+				
+				//dq
+				// remove images from the list
+				//call random on copy of array list
+				
+				// random for list of cards and for buttons
+				
 				
 			}
 			break;
+		case "Plants":
 		}
 	}
 	
