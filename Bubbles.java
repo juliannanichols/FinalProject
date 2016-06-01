@@ -17,6 +17,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	String [] cardBack = { "Classic" , "Stars" , "Flowers" };
 	String input = null;
 	Potato matching = new Potato();
+	Butter but = new Butter();
 	int numCards = 6;
 	JButton button;
 	JButton[] cards = new JButton[numCards];
@@ -87,6 +88,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		case "Switch Deck":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[1]);
+			but.setCards(input, numCards);
 			break; //break for "switch deck" block
 				
 		case "Card Back":
