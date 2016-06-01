@@ -13,52 +13,51 @@ import com.sun.prism.*; //needed to use Image
 public class Butter implements ActionListener {
 	
 	//Bubbles bub = new Bubbles();
-	ImageIcon[] traditional = new ImageIcon[10];
-	ImageIcon[] animal = new ImageIcon[10];
-	ImageIcon[] plant = new ImageIcon[10];
 	
 	/**
 	 * This method puts all the pictures into each
 	 * corresponding array
 	 */
-	public void makeArray() {
-		
-		for (int i = 0; i < traditional.length; i++ ) {
-			traditional[i] = new ImageIcon("t" + i + ".png");
-        }
-		
-		for (int i = 0; i < animal.length; i++ ) {
-			animal[i] = new ImageIcon("a" + i + ".png");
-        }
-		
-		for (int i = 0; i < plant.length; i++ ) {
-			plant[i] = new ImageIcon("p" + i + ".png");
-        }
-		
-	}
-	
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setCards( String name, int numCards ){
+	public void makeArray(String name, int numCards) {
+		ImageIcon[] pictures = new ImageIcon[numCards];
 		
 		switch(name){
 		case "Animals":
-			for(int i = 0; i < numCards/2; i++ ) {
-				int rnd = new Random().nextInt(animal.length);
-				
+			for (int i = 0; i < numCards/2; i++ ) {
+				int rnd = new Random().nextInt(pictures.length);
+				pictures[i] = new ImageIcon("a" + rnd + ".png");
+	        }
+			
 				//dq
 				// remove images from the list
 				//call random on copy of array list
 				
 				// random for list of cards and for buttons
 				
-				
-			}
 			break;
 		case "Plants":
+			for (int i = 0; i < pictures.length; i++ ) {
+				int rnd = new Random().nextInt(pictures.length);
+				pictures[i] = new ImageIcon("p" + i + ".png");
+	        }
+			
+			break;
+		
+		case "Traditional":
+			for (int i = 0; i < pictures.length; i++ ) {
+				int rnd = new Random().nextInt(pictures.length);
+				pictures[i] = new ImageIcon("t" + i + ".png");
+			}
+			break;
 		}
+	
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 */
+	public void setButtons(){
 	}
 	
 	/**

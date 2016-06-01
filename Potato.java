@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
 
@@ -9,7 +8,7 @@ import javax.swing.*;
  * so this is probably going to have to be the class for the randomizing
  */
 
-public class Potato extends JPanel implements ActionListener, Serializable {
+public class Potato extends JPanel implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -17,7 +16,4 @@ public class Potato extends JPanel implements ActionListener, Serializable {
 		this.setLayout( new GridLayout( 2, 6 ) );
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		
-	}
 }
