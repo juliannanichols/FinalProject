@@ -16,13 +16,13 @@ public class Butter implements ActionListener {
 	ImageIcon[] traditional = new ImageIcon[10];
 	ImageIcon[] animal = new ImageIcon[10];
 	ImageIcon[] plant = new ImageIcon[10];
-	ImageIcon[] food = new ImageIcon[10];
 	
 	/**
 	 * This method puts all the pictures into each
 	 * corresponding array
 	 */
 	public void makeArray() {
+		
 		for (int i = 0; i < traditional.length; i++ ) {
 			traditional[i] = new ImageIcon("t" + i + ".png");
         }
@@ -35,9 +35,6 @@ public class Butter implements ActionListener {
 			plant[i] = new ImageIcon("p" + i + ".png");
         }
 		
-		for (int i = 0; i < food.length; i++ ) {
-			food[i] = new ImageIcon("f" + i + ".png");
-        }
 	}
 	
 	/**
