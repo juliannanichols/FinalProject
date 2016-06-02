@@ -36,7 +36,7 @@ public class Butter implements ActionListener {
 				
 			break;
 		case "Plants":
-			for (int i = 0; i < pictures.length; i++ ) {
+			for (int i = 0; i < numCards/2; i++ ) {
 				int rnd = new Random().nextInt(pictures.length);
 				pictures[i] = new ImageIcon("p" + i + ".png");
 	        }
@@ -44,7 +44,7 @@ public class Butter implements ActionListener {
 			break;
 		
 		case "Traditional":
-			for (int i = 0; i < pictures.length; i++ ) {
+			for (int i = 0; i < numCards/2; i++ ) {
 				int rnd = new Random().nextInt(pictures.length);
 				pictures[i] = new ImageIcon("t" + i + ".png");
 			}
@@ -58,6 +58,7 @@ public class Butter implements ActionListener {
 	 * @param name
 	 */
 	public void setButtons(){
+		
 	}
 	
 	/**
