@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
@@ -21,6 +22,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	int numCards = 6;
 	static JButton button;
 	JButton[] cards = new JButton[numCards];
+	ImageIcon pictures = new ImageIcon();
 	
 	public Bubbles() {
 		super();
@@ -77,6 +79,24 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		this.setSize(600, 600);
 		this.setVisible(true);
 		
+		
+	}
+
+	/**
+	 * 
+	 */
+	public void setButtons( ImageIcon[] images ) {
+		for( int i = 0; i < numCards; i++ ) {
+		int rnd= new Random().nextInt(numCards);
+		
+		}
+	}
+	
+	/**
+	 *
+	 */
+	public void setBack( ImageIcon[] images ) {
+		
 	}
 	
 	/**
@@ -88,7 +108,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		case "Switch Deck":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[1]);
-			but.makeArray(input, numCards);
+			pictures = but.makeArray(input, numCards);
 			break; //break for "switch deck" block
 				
 		case "Card Back":

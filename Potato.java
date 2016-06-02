@@ -13,7 +13,9 @@ public class Potato extends JPanel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public Potato() {
+		
 		this.setLayout( new GridLayout( 2, 6 ) );
+	
 	}
 
 }
