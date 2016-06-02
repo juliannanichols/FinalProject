@@ -19,7 +19,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	Potato matching = new Potato();
 	Butter but = new Butter();
 	int numCards = 6;
-	JButton button;
+	static JButton button;
 	JButton[] cards = new JButton[numCards];
 	
 	public Bubbles() {
