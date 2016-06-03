@@ -22,7 +22,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	int numCards = 6;
 	static JButton button;
 	JButton[] cards = new JButton[numCards];
-	ImageIcon pictures = new ImageIcon();
+	ImageIcon[] pictures = new ImageIcon[numCards];
 	
 	public Bubbles() {
 		super();
