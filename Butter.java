@@ -10,7 +10,7 @@ import com.sun.prism.*; //needed to use Image
  * @author Isabelle Schroeder
  */
 public class Butter {
-	
+		
 	/**
 	 * This method puts all the pictures into each
 	 * corresponding array
@@ -25,6 +25,7 @@ public class Butter {
 				// array will pick from 0-9 hopefully. Thanks stackOverflow
 				int rnd = new Random().nextInt(9);
 				pictures[i] = new ImageIcon("a" + rnd + ".png");
+				// remove picture from array here
 	        }
 			
 				//dq
