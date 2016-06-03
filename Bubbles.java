@@ -86,9 +86,11 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 * 
 	 */
 	public void setButtons( ImageIcon[] images ) {
+		Random r = new Random();
 		for( int i = 0; i < numCards; i++ ) {
-		int rnd= new Random().nextInt(numCards);
-		
+			int rnd = r.nextInt(numCards);
+			cards[rnd].setIcon(images[i]);
+			cards[rnd].remove(rnd);
 		}
 	}
 	
@@ -109,6 +111,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[1]);
 			pictures = but.makeArray(input, numCards);
+			setButtons(pictures);
 			break; //break for "switch deck" block
 				
 		case "Card Back":
