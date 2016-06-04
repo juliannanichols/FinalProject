@@ -21,11 +21,11 @@ public class Butter {
 		switch(name){
 		case "Animals":
 			for (int i = 0; i < numCards/2; i++ ) {
-				// may work, maybe not. The 9 is there so that the
-				// array will pick from 0-9 hopefully. Thanks stackOverflow
+				// May work, maybe not. The 9 is there so that the array will pick from 0-9 hopefully. 
+				// Thanks stackOverflow :D
 				int rnd = new Random().nextInt(9);
 				pictures[i] = new ImageIcon("a" + rnd + ".png");
-				// remove picture from array here
+				// remove the pictures from the array list here
 	        }
 			
 				//dq

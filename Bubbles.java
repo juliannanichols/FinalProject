@@ -20,6 +20,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	Potato matching = new Potato();
 	Butter but = new Butter();
 	int numCards = 6;
+	int i;
 	static JButton button;
 	JButton[] cards = new JButton[numCards];
 	ImageIcon[] pictures = new ImageIcon[numCards];
@@ -68,9 +69,14 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		menuBar.add(menu);
 		
 		//creating the buttons
-		for( int i = 0; i < cards.length; i++) {
+		for( i = 0; i < cards.length; i++) {
         	button = new JButton( "Card " + i );
-        	button.setActionCommand( "Card " + i );
+        	
+        	// so, I'm not sure if this will work or not, but maybe we just want all of the cards
+        	// to have the card actionCommand and then we need to figure out how to just have two
+        	// buttons activated without super sadness
+        	// actually, it's probably better if we can find a magical way to pass the int into the switch...
+        	button.setActionCommand( "Card" );     //+ i );
         	button.addActionListener( this );
         	matching.add( button );
         }
@@ -87,9 +93,11 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 */
 	public void setButtons( ImageIcon[] images ) {
 		Random r = new Random();
-		for( int i = 0; i < numCards; i++ ) {
+		for( int w = 0; w < numCards; w++ ) {
 			int rnd = r.nextInt(numCards);
-			cards[rnd].setIcon(images[i]);
+			// we might need to make a new array of cards or something and then delete the number form that array?
+			// unless this works
+			cards[rnd].setIcon(images[w]);
 			cards[rnd].remove(rnd);
 		}
 	}
@@ -113,17 +121,17 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			pictures = but.makeArray(input, numCards);
 			setButtons(pictures);
 			break; //break for "switch deck" block
-				
 		case "Card Back":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[1]);
-			break; //break for "card back" block
-			
+			break; //break for "card back" block	
 		case "Number":
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[1]);
 			numCards = Integer.parseInt(input);
 			break; //break for "number" block
+		case "Card":
+			
 		}
 	}
 
