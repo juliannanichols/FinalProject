@@ -108,9 +108,9 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 */
 	public void setBack( ImageIcon[] images ) {
 		// biscuits, I forgot that we don't have pictures for the back yet
-		switch(){
-		case "":
-		}
+		//switch(){
+		//case "":
+	//	}
 	}
 	
 	/**
