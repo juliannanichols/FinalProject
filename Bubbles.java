@@ -96,8 +96,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		Random r = new Random();
 		for( int w = 0; w < numCards; w++ ) {
 			int rnd = r.nextInt(numCards);
-			// this is causing a NullPointerException and causing sadness. Thoughts?
-			// I think it's because I'm not doing the copy array part right, but I'm not sure
 			cards[rnd].setIcon(pictures.getFirst());
 			cards2[rnd].remove(rnd);
 		}
@@ -123,7 +121,11 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[0]);
 			pictures = but.makeArray(input, numCards);
+			
+			// this is what's actually causing the NullPointer to be thrown, but I don't know why...
+			// I checked, and pictures is not empty, so setButtons should be receiving the arrayDeque
 			setButtons(pictures);
+			
 			break; //break for "switch deck" block
 		case "Card Back":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
