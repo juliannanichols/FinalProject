@@ -23,7 +23,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	int i;
 	static JButton button;
 	JButton[] cards = new JButton[numCards];
-	ImageIcon[] pictures = new ImageIcon[numCards];
+	JButton[] cards2 = cards;
+	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards);
 	
 	public Bubbles() {
 		super();
@@ -91,14 +92,14 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	/**
 	 * 
 	 */
-	public void setButtons( ImageIcon[] images ) {
+	public void setButtons( ArrayDeque<ImageIcon> pictures ) {
 		Random r = new Random();
 		for( int w = 0; w < numCards; w++ ) {
 			int rnd = r.nextInt(numCards);
-			// we might need to make a new array of cards or something and then delete the number form that array?
-			// unless this works
-			cards[rnd].setIcon(images[w]);
-			cards[rnd].remove(rnd);
+			// this is causing a NullPointerException and causing sadness. Thoughts?
+			// I think it's because I'm not doing the copy array part right, but I'm not sure
+			cards[rnd].setIcon(pictures.getFirst());
+			cards2[rnd].remove(rnd);
 		}
 	}
 	
@@ -106,7 +107,10 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 *
 	 */
 	public void setBack( ImageIcon[] images ) {
-		
+		// biscuits, I forgot that we don't have pictures for the back yet
+		switch(){
+		case "":
+		}
 	}
 	
 	/**
@@ -117,17 +121,17 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		switch (e.getActionCommand()) {
 		case "Switch Deck":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
-					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[1]);
+					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[0]);
 			pictures = but.makeArray(input, numCards);
 			setButtons(pictures);
 			break; //break for "switch deck" block
 		case "Card Back":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
-					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[1]);
+					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[0]);
 			break; //break for "card back" block	
 		case "Number":
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
-					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[1]);
+					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[0]);
 			numCards = Integer.parseInt(input);
 			break; //break for "number" block
 		case "Card":

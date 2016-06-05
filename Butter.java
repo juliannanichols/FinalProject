@@ -9,14 +9,18 @@ import com.sun.prism.*; //needed to use Image
  * @author Julianna Nichols
  * @author Isabelle Schroeder
  */
-public class Butter {
+public class Butter extends ArrayDeque<ImageIcon>{
 		
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * This method puts all the pictures into each
 	 * corresponding array
 	 */
-	public ImageIcon[] makeArray(String name, int numCards) {
-		ImageIcon[] pictures = new ImageIcon[numCards];
+	public ArrayDeque<ImageIcon> makeArray(String name, int numCards) {
+		
+		ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards);
+		ArrayDeque<ImageIcon> otherPictures = pictures.clone();
 		
 		switch(name){
 		case "Animals":
@@ -24,8 +28,8 @@ public class Butter {
 				// May work, maybe not. The 9 is there so that the array will pick from 0-9 hopefully. 
 				// Thanks stackOverflow :D
 				int rnd = new Random().nextInt(9);
-				pictures[i] = new ImageIcon("a" + rnd + ".png");
-				// remove the pictures from the array list here
+				pictures.add( new ImageIcon("a" + rnd + ".jpg"));
+				otherPictures.remove(new ImageIcon("a" + rnd + ".jpg")); // remove the pictures from the array list here
 	        }
 			
 				//dq
@@ -37,15 +41,16 @@ public class Butter {
 		case "Plants":
 			for (int i = 0; i < numCards/2; i++ ) {
 				int rnd = new Random().nextInt(9);
-				pictures[i] = new ImageIcon("p" + rnd + ".png");
+				pictures.add( new ImageIcon("p" + rnd + ".jpg"));
+				otherPictures.remove(new ImageIcon("p" + rnd + ".jpg"));
 	        }
-			
 			break;
 		
 		case "Traditional":
 			for (int i = 0; i < numCards/2; i++ ) {
 				int rnd = new Random().nextInt(9);
-				pictures[i] = new ImageIcon("t" + rnd + ".png");
+				pictures.add( new ImageIcon("t" + rnd + ".png"));
+				otherPictures.remove(new ImageIcon("t" + rnd + ".png"));
 			}
 			break;
 		}
