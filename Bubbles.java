@@ -22,8 +22,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	int numCards = 6; // 6 is default
 	JButton button; // THE button
 	JButton[] cards = new JButton[numCards];
-	JButton[] cards2 = cards.clone();
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
+	ArrayList<Integer> temp = new ArrayList<Integer>();
 	Random r = new Random();
 	
 	public Bubbles() {
@@ -84,7 +84,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			//put then in the array we are adding the cards to and..
 			//temporary happiness!
 			
-			cards[i] = new JButton( "Card " + i );
+			cards[i] = new JButton( "" );
 			
 //        	// so, I'm not sure if this will work or not, but maybe we just want all of the cards
 //        	// to have the card actionCommand and then we need to figure out how to just have two
@@ -107,11 +107,15 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 * The pictures are set to a random button.
 	 */
 	public void setButtons( ArrayDeque<ImageIcon> pictures ) {
+		int rnd;
 		for( int w = 0; w < numCards; w++ ) {
-			int rnd = r.nextInt(numCards);
-			cards[rnd].setIcon(pictures.getFirst());
-			cards2[rnd].remove(rnd);
+			do {
+			rnd = r.nextInt(numCards);
 			
+			} while(temp.contains(rnd));
+			cards[rnd].setIcon(pictures.poll());
+			
+			temp.add(rnd);
 		}
 	}
 	

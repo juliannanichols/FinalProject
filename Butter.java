@@ -12,6 +12,8 @@ import com.sun.prism.*; //needed to use Image
 public class Butter extends ArrayDeque<ImageIcon>{
 		
 	private static final long serialVersionUID = 1L;
+	ArrayList<Integer> temp = new ArrayList<Integer>();
+	Random r = new Random();
 
 	/**
 	 * This method puts all the pictures into each
@@ -28,6 +30,13 @@ public class Butter extends ArrayDeque<ImageIcon>{
 				// May work, maybe not. The 9 is there so that the array will pick from 0-9 hopefully. 
 				// Thanks stackOverflow :D
 				int rnd = new Random().nextInt(9);
+				
+				do {
+					rnd = r.nextInt(numCards);
+					
+					} while(temp.contains(rnd));
+					
+					temp.add(rnd);
 				
 				otherPictures.add( new ImageIcon( "a" + rnd + ".jpg" ) );
 				
