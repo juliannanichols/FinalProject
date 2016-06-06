@@ -13,18 +13,17 @@ import javax.swing.*;
 public class Bubbles extends JFrame implements ActionListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	String [] numberCards = { "6" , "8" , "10" , "12" , "14" , "16" , "18" , "20" };
-	String [] switchDeck = { "Animals" , "Plants" , "Traditional" , "Food" };
-	String [] cardBack = { "Classic" , "Stars" , "Flowers" };
-	String input = null;
-	Potato matching = new Potato();
-	Butter but = new Butter();
-	int numCards = 6;
-	int i;
-	static JButton button;
+	String [] numberCards = { "6" , "8" , "10" , "12" , "14" , "16" , "18" , "20" }; // card amount options
+	String [] switchDeck = { "Animals" , "Plants" , "Traditional" }; // deck options
+	String [] cardBack = { "Classic" , "Stars" , "Flowers" }; // card back options
+	String input = null; // so the user can have options
+	Potato matching = new Potato(); // for potato things. Mostly adding buttons to the JPanel in this JFrame
+	Butter but = new Butter(); // so we can call methods from butter
+	int numCards = 6; // 6 is default
+	static JButton button; // THE button
 	JButton[] cards = new JButton[numCards];
-	JButton[] cards2 = cards;
-	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards);
+	JButton[] cards2 = cards.clone();
+	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
 	
 	public Bubbles() {
 		super();
@@ -70,27 +69,28 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		menuBar.add(menu);
 		
 		//creating the buttons
-		for( i = 0; i < cards.length; i++) {
+		for( int i = 0; i < cards.length; i++) {
         	button = new JButton( "Card " + i );
         	
         	// so, I'm not sure if this will work or not, but maybe we just want all of the cards
         	// to have the card actionCommand and then we need to figure out how to just have two
         	// buttons activated without super sadness
         	// actually, it's probably better if we can find a magical way to pass the int into the switch...
-        	button.setActionCommand( "Card" );     //+ i );
+        	button.setActionCommand( "Card" );
         	button.addActionListener( this );
         	matching.add( button );
         }
 		
 		this.setJMenuBar(menuBar);
 		this.setSize(600, 600);
-		this.setVisible(true);
+		this.setVisible(true); // setting the frame visible
 		
 		
 	}
 
 	/**
-	 * 
+	 * Set the pictures for the buttons!
+	 * The pictures are set to a random button.
 	 */
 	public void setButtons( ArrayDeque<ImageIcon> pictures ) {
 		Random r = new Random();
@@ -102,7 +102,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	}
 	
 	/**
-	 *
+	 * This is for setting the back of the "cards".
 	 */
 	public void setBack( ImageIcon[] images ) {
 		// biscuits, I forgot that we don't have pictures for the back yet
@@ -112,7 +112,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	}
 	
 	/**
-	 * 
+	 * Required and super useful actionPerformed method!
 	 */
 	public void actionPerformed(ActionEvent e) {
 		
@@ -125,7 +125,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			// this is what's actually causing the NullPointer to be thrown, but I don't know why...
 			// I checked, and pictures is not empty, so setButtons should be receiving the arrayDeque
 			setButtons(pictures);
-			
 			break; //break for "switch deck" block
 		case "Card Back":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
@@ -134,7 +133,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		case "Number":
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[0]);
-			numCards = Integer.parseInt(input);
+			numCards = Integer.parseInt(input); // parsing the string to an int
 			break; //break for "number" block
 		case "Card":
 			
