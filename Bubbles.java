@@ -107,10 +107,12 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 * The pictures are set to a random button.
 	 */
 	public void setButtons( ArrayDeque<ImageIcon> pictures ) {
+		
 		for( int w = 0; w < numCards; w++ ) {
 			int rnd = r.nextInt(numCards);
-			cards[rnd].setIcon(pictures.getFirst());
-			cards2[rnd].remove(rnd);
+			
+			cards[rnd].setIcon(pictures.poll());
+//			cards2[rnd].remove(rnd);
 			
 		}
 	}
