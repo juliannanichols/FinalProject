@@ -20,10 +20,11 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	Potato matching = new Potato(); // for potato things. Mostly adding buttons to the JPanel in this JFrame
 	Butter but = new Butter(); // so we can call methods from butter
 	int numCards = 6; // 6 is default
-	static JButton button; // THE button
+	JButton button; // THE button
 	JButton[] cards = new JButton[numCards];
 	JButton[] cards2 = cards.clone();
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
+	Random r = new Random();
 	
 	public Bubbles() {
 		super();
@@ -68,17 +69,30 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		
 		menuBar.add(menu);
 		
-		//creating the buttons
-		for( int i = 0; i < cards.length; i++) {
-        	button = new JButton( "Card " + i );
-        	
-        	// so, I'm not sure if this will work or not, but maybe we just want all of the cards
-        	// to have the card actionCommand and then we need to figure out how to just have two
-        	// buttons activated without super sadness
-        	// actually, it's probably better if we can find a magical way to pass the int into the switch...
-        	button.setActionCommand( "Card" );
-        	button.addActionListener( this );
-        	matching.add( button );
+//		//creating the buttons
+		for( int i = 0; i < numCards; i++) {
+			
+			//cards[i] so it gets added into that array
+			//can't remember at this exact moment why it helped
+			//but I think it did...so ..yeah
+			
+			//http://www.coderanch.com/t/340584/GUI/java/create-JButton-Array
+			//why I did that....
+			
+			//I realized that in the set buttons method it is setting to a button..
+			//but we weren't relating the 'button' to the 'cards' so...then I
+			//put then in the array we are adding the cards to and..
+			//temporary happiness!
+			
+			cards[i] = new JButton( "Card " + i );
+			
+//        	// so, I'm not sure if this will work or not, but maybe we just want all of the cards
+//        	// to have the card actionCommand and then we need to figure out how to just have two
+//        	// buttons activated without super sadness
+//        	// actually, it's probably better if we can find a magical way to pass the int into the switch...
+        	cards[i].setActionCommand( "Card" );
+        	cards[i].addActionListener( this );
+        	matching.add( cards[i] );
         }
 		
 		this.setJMenuBar(menuBar);
@@ -93,11 +107,10 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 * The pictures are set to a random button.
 	 */
 	public void setButtons( ArrayDeque<ImageIcon> pictures ) {
-		Random r = new Random();
 		for( int w = 0; w < numCards; w++ ) {
 			int rnd = r.nextInt(numCards);
 			cards[rnd].setIcon(pictures.getFirst());
-			cards2[rnd].remove(rnd);
+			cards2[rnd].remove(rnd);			
 		}
 	}
 	
@@ -121,7 +134,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[0]);
 			pictures = but.makeArray(input, numCards);
-			
 			// this is what's actually causing the NullPointer to be thrown, but I don't know why...
 			// I checked, and pictures is not empty, so setButtons should be receiving the arrayDeque
 			setButtons(pictures);
