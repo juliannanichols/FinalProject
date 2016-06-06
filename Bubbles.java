@@ -110,7 +110,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		for( int w = 0; w < numCards; w++ ) {
 			int rnd = r.nextInt(numCards);
 			cards[rnd].setIcon(pictures.getFirst());
-			cards2[rnd].remove(rnd);			
+			cards2[rnd].remove(rnd);
+			
 		}
 	}
 	
