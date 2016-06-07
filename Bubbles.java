@@ -70,7 +70,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		
 		menuBar.add(menu);
 		
-//		//creating the buttons
+		//creating the buttons
 		for( int i = 0; i < numCards; i++) {
 			
 			//cards[i] so it gets added into that array
@@ -162,6 +162,13 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[0]);
 			numCards = Integer.parseInt(input); // parsing the string to an int
+			
+			for( int i = 0; i < numCards; i++) {
+				cards[i] = new JButton( "" );
+	        	cards[i].setActionCommand( "Card" );
+	        	cards[i].addActionListener( this );
+	        	matching.add( cards[i] );
+	        }
 			repaint();
 			break; //break for "number" block
 		case "Card":
