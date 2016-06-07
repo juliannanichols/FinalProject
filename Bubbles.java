@@ -86,10 +86,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			
 			cards[i] = new JButton( "" );
 			
-//        	// so, I'm not sure if this will work or not, but maybe we just want all of the cards
-//        	// to have the card actionCommand and then we need to figure out how to just have two
-//        	// buttons activated without super sadness
-//        	// actually, it's probably better if we can find a magical way to pass the int into the switch...
         	cards[i].setActionCommand( "Card" );
         	cards[i].addActionListener( this );
         	matching.add( cards[i] );
@@ -107,20 +103,10 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 * The pictures are set to a random button.
 	 */
 	public void setButtons( ArrayDeque<ImageIcon> pictures ) {
-<<<<<<< HEAD
 		int rnd;
 		for( int w = 0; w < numCards; w++ ) {
 			do {
 			rnd = r.nextInt(numCards);
-=======
-		
-		for( int w = 0; w < numCards; w++ ) {
-			int rnd = r.nextInt(numCards);
-			
-			cards[rnd].setIcon(pictures.poll());
-//			cards2[rnd].remove(rnd);
->>>>>>> origin/master
-			
 			} while(temp.contains(rnd));
 			cards[rnd].setIcon(pictures.poll());
 			
