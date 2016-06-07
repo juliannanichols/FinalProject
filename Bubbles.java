@@ -25,7 +25,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
 	ArrayList<Integer> temp = new ArrayList<Integer>();
 	Random r = new Random();
-	ImageIcon tempII;
+	ImageIcon tempII; //temporary image icon
+	ImageIcon tempCB; //temporary card back
 	ArrayList<ImageIcon> arrayII = new ArrayList<ImageIcon>();
 	
 	public Bubbles() {
@@ -109,6 +110,14 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			do {
 			rnd = r.nextInt(numCards);
 			} while(temp.contains(rnd));
+			/*
+			 * so this is an array of the pictures being put in a
+			 * random order..since it was originally being put to
+			 * the buttons in said random order.
+			 * 
+			 * this is used in the switch statement so the button 
+			 * can switch pictures  
+			 */
 			arrayII.add(pictures.poll());
 			//tempII = pictures.poll();
 			//cards[rnd].setIcon(tempII);
@@ -122,6 +131,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	public void setBack( String s ) {
 		switch(s){
 		case "Classic":
+			tempCB = new ImageIcon("b2.jpg");
 			for( int w = 0; w < numCards; w++ ){
 				cards[w].setIcon( new ImageIcon("b2.jpg") );
 			}
@@ -173,8 +183,26 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			repaint();
 			break; //break for "number" block
 		case "Card 0":
-			tempII = arrayII.get(0);
-			cards[0].setIcon(tempII);
+			/*
+			 * if card 0 is clicked..
+			 * this puts the randomly selected image
+			 * that was assigned there (in setButtons)
+			 * onto the button
+			 * 
+			 * now it's checking if the back is already set
+			 * if it is then it will set the animal (or whatever)
+			 * picture..
+			 * if it isn't then the card back will be set
+			 * 
+			 * not the most efficient but it works!!!
+			 */
+			if(cards[0].getIcon() == tempCB) {
+				tempII = arrayII.get(0);
+				cards[0].setIcon(tempII);
+			} else {
+				cards[0].setIcon(tempCB);
+			}
+			
 			break;
 		case "Card 1":
 			tempII = arrayII.get(1);
