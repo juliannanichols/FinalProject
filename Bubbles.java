@@ -39,6 +39,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		this.setLayout(new BorderLayout());
 		this.setName("JMenuFrame");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		this.add(matching, BorderLayout.CENTER);
 		
@@ -109,16 +110,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		for( int w = 0; w < numCards; w++ ) {
 			do {
 			rnd = r.nextInt(numCards);
-<<<<<<< HEAD
-		
-		for( int w = 0; w < numCards; w++ ) {
-			rnd = r.nextInt(numCards);
-			
-			cards[rnd].setIcon(pictures.poll());
-//			cards2[rnd].remove(rnd);
-			
-=======
->>>>>>> origin/master
+
 			} while(temp.contains(rnd));
 			/* 
 			 * this is used in the switch statement so the button 
@@ -134,10 +126,11 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			//tempII = pictures.poll();
 			//cards[rnd].setIcon(tempII);
 			
+			
 			arrayII.add(pictures.poll());
 			temp.add(rnd);
 			
-			}
+			
 			}
 	}
 	
@@ -153,11 +146,13 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			}
 			break;
 		case "Stars":
+			tempCB = new ImageIcon("b1.jpg");
 			for( int w = 0; w < numCards; w++ ){
 				cards[w].setIcon( new ImageIcon("b1.jpg") );
 			}
 			break;
 		case "Flowers":
+			tempCB = new ImageIcon("b0.jpg");
 			for( int w = 0; w < numCards; w++ ){
 				cards[w].setIcon( new ImageIcon("b0.jpg") );
 			}
