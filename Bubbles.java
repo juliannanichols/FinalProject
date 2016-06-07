@@ -27,7 +27,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	Random r = new Random();
 	ImageIcon tempII; //temporary image icon
 	ImageIcon tempCB; //temporary card back
-	ArrayList<ImageIcon> arrayII = new ArrayList<ImageIcon>();
+	ArrayList<ImageIcon> arrayII = new ArrayList<ImageIcon>(numCards);
 	
 	public Bubbles() {
 		super();
@@ -118,9 +118,12 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			 * this is used in the switch statement so the button 
 			 * can switch pictures  
 			 */
-			arrayII.add(pictures.poll());
+			System.out.println("array II " + arrayII);
+			System.out.println("pictures " + pictures);
+			
 			//tempII = pictures.poll();
 			//cards[rnd].setIcon(tempII);
+			arrayII.add(pictures.poll());
 			temp.add(rnd);
 		}
 	}
@@ -205,24 +208,45 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			
 			break;
 		case "Card 1":
-			tempII = arrayII.get(1);
-			cards[1].setIcon(tempII);
+			if(cards[1].getIcon() == tempCB) {
+				tempII = arrayII.get(1);
+				cards[1].setIcon(tempII);
+			} else {
+				cards[1].setIcon(tempCB);
+			}
+			
 			break;
 		case "Card 2":
+			if(cards[2].getIcon() == tempCB) {
 			tempII = arrayII.get(2);
 			cards[2].setIcon(tempII);
+			} else {
+				cards[2].setIcon(tempCB);
+			}
 			break;	
 		case "Card 3":
+			if(cards[3].getIcon() == tempCB) {
 			tempII = arrayII.get(3);
 			cards[3].setIcon(tempII);
+			} else {
+				cards[3].setIcon(tempCB);
+			}
 			break;
 		case "Card 4":
+			if(cards[4].getIcon() == tempCB) {
 			tempII = arrayII.get(4);
 			cards[4].setIcon(tempII);
+			} else {
+				cards[4].setIcon(tempCB);
+			}
 			break;	
 		case "Card 5":
+			if(cards[5].getIcon() == tempCB) {
 			tempII = arrayII.get(5);
 			cards[5].setIcon(tempII);
+			} else {
+				cards[5].setIcon(tempCB);
+			}
 			break;
 		case "Card 6":
 			break;	
