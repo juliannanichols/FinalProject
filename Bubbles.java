@@ -25,6 +25,9 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
 	ArrayList<Integer> temp = new ArrayList<Integer>();
 	Random r = new Random();
+	ImageIcon tempII; //temporary image icon
+	ImageIcon tempCB; //temporary card back
+	ArrayList<ImageIcon> arrayII = new ArrayList<ImageIcon>(numCards);
 	
 	public Bubbles() {
 		super();
@@ -69,7 +72,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		
 		menuBar.add(menu);
 		
-//		//creating the buttons
+		//creating the buttons
 		for( int i = 0; i < numCards; i++) {
 			
 			//cards[i] so it gets added into that array
@@ -85,12 +88,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			//temporary happiness!
 			
 			cards[i] = new JButton( "" );
-			
-//        	// so, I'm not sure if this will work or not, but maybe we just want all of the cards
-//        	// to have the card actionCommand and then we need to figure out how to just have two
-//        	// buttons activated without super sadness
-//        	// actually, it's probably better if we can find a magical way to pass the int into the switch...
-        	cards[i].setActionCommand( "Card" );
+        	cards[i].setActionCommand( "Card " + i );
         	cards[i].addActionListener( this );
         	matching.add( cards[i] );
         }
@@ -111,6 +109,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		for( int w = 0; w < numCards; w++ ) {
 			do {
 			rnd = r.nextInt(numCards);
+<<<<<<< HEAD
 		
 		for( int w = 0; w < numCards; w++ ) {
 			rnd = r.nextInt(numCards);
@@ -118,9 +117,24 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			cards[rnd].setIcon(pictures.poll());
 //			cards2[rnd].remove(rnd);
 			
+=======
+>>>>>>> origin/master
 			} while(temp.contains(rnd));
-			cards[rnd].setIcon(pictures.poll());
+			/* 
+			 * this is used in the switch statement so the button 
+			 * can switch pictures  
+			 * 
+			 * I realize it is basically just making a copy....
+			 * not my original intention but my brain is fried and
+			 * can't think of a way to fix it right now
+			 */
+			System.out.println("array II " + arrayII);
+			System.out.println("pictures " + pictures);
 			
+			//tempII = pictures.poll();
+			//cards[rnd].setIcon(tempII);
+			
+			arrayII.add(pictures.poll());
 			temp.add(rnd);
 			
 			}
@@ -130,11 +144,25 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	/**
 	 * This is for setting the back of the "cards".
 	 */
-	public void setBack( ImageIcon[] images ) {
-		// biscuits, I forgot that we don't have pictures for the back yet
-		//switch(){
-		//case "":
-	//	}
+	public void setBack( String s ) {
+		switch(s){
+		case "Classic":
+			tempCB = new ImageIcon("b2.jpg");
+			for( int w = 0; w < numCards; w++ ){
+				cards[w].setIcon( new ImageIcon("b2.jpg") );
+			}
+			break;
+		case "Stars":
+			for( int w = 0; w < numCards; w++ ){
+				cards[w].setIcon( new ImageIcon("b1.jpg") );
+			}
+			break;
+		case "Flowers":
+			for( int w = 0; w < numCards; w++ ){
+				cards[w].setIcon( new ImageIcon("b0.jpg") );
+			}
+			break;
+		}
 	}
 	
 	/**
@@ -150,18 +178,117 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			// this is what's actually causing the NullPointer to be thrown, but I don't know why...
 			// I checked, and pictures is not empty, so setButtons should be receiving the arrayDeque
 			setButtons(pictures);
+			repaint();
 			break; //break for "switch deck" block
 		case "Card Back":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[0]);
+			repaint();
 			break; //break for "card back" block	
 		case "Number":
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[0]);
 			numCards = Integer.parseInt(input); // parsing the string to an int
-			break; //break for "number" block
-		case "Card":
 			
+			for( int i = 0; i < numCards; i++) {
+				cards[i] = new JButton( "" );
+	        	cards[i].setActionCommand( "Card" );
+	        	cards[i].addActionListener( this );
+	        	matching.add( cards[i] );
+	        }
+			repaint();
+			break; //break for "number" block
+		case "Card 0":
+			/*
+			 * if card 0 is clicked..
+			 * this puts the randomly selected image
+			 * that was assigned there (in setButtons)
+			 * onto the button
+			 * 
+			 * now it's checking if the back is already set
+			 * if it is then it will set the animal (or whatever)
+			 * picture..
+			 * if it isn't then the card back will be set
+			 * 
+			 * not the most efficient but it works!!!
+			 */
+			if(cards[0].getIcon() == tempCB) {
+				tempII = arrayII.get(0);
+				cards[0].setIcon(tempII);
+			} else {
+				cards[0].setIcon(tempCB);
+			}
+			
+			break;
+		case "Card 1":
+			if(cards[1].getIcon() == tempCB) {
+				tempII = arrayII.get(1);
+				cards[1].setIcon(tempII);
+			} else {
+				cards[1].setIcon(tempCB);
+			}
+			
+			break;
+		case "Card 2":
+			if(cards[2].getIcon() == tempCB) {
+			tempII = arrayII.get(2);
+			cards[2].setIcon(tempII);
+			} else {
+				cards[2].setIcon(tempCB);
+			}
+			break;	
+		case "Card 3":
+			if(cards[3].getIcon() == tempCB) {
+			tempII = arrayII.get(3);
+			cards[3].setIcon(tempII);
+			} else {
+				cards[3].setIcon(tempCB);
+			}
+			break;
+		case "Card 4":
+			if(cards[4].getIcon() == tempCB) {
+			tempII = arrayII.get(4);
+			cards[4].setIcon(tempII);
+			} else {
+				cards[4].setIcon(tempCB);
+			}
+			break;	
+		case "Card 5":
+			if(cards[5].getIcon() == tempCB) {
+			tempII = arrayII.get(5);
+			cards[5].setIcon(tempII);
+			} else {
+				cards[5].setIcon(tempCB);
+			}
+			break;
+		case "Card 6":
+			break;	
+		case "Card 7":
+			break;
+		case "Card 8":
+			break;	
+		case "Card 9":
+			break;
+		case "Card 10":
+			break;	
+		case "Card 11":
+			break;
+		case "Card 12":
+			break;	
+		case "Card 13":
+			break;
+		case "Card 14":
+			break;	
+		case "Card 15":
+			break;
+		case "Card 16":
+			break;
+		case "Card 17":
+			break;
+		case "Card 18":
+			break;	
+		case "Card 19":
+			break;
 		}
 	}
 

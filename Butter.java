@@ -56,6 +56,14 @@ public class Butter extends ArrayDeque<ImageIcon>{
 		case "Plants": // see Animals for cool little commenty things
 			for( int i = 0; i < numCards/2; i++){
 				int rnd = new Random().nextInt(9);
+				
+				do {
+					rnd = r.nextInt(numCards);
+					
+					} while(temp.contains(rnd));
+					
+					temp.add(rnd);
+					
 				otherPictures.add( new ImageIcon( "p" + rnd + ".jpg" ) );
 				
 				if( pictures.contains( new ImageIcon( "p" + rnd + ".jpg" )) ){
@@ -70,6 +78,14 @@ public class Butter extends ArrayDeque<ImageIcon>{
 		case "Traditional":
 			for( int i = 0; i < numCards/2; i++){
 				int rnd = new Random().nextInt(9);
+				
+				do {
+					rnd = r.nextInt(numCards);
+					
+					} while(temp.contains(rnd));
+					
+					temp.add(rnd);
+				
 				// the traditional pictures are png files, while the plant and animal are jpg files
 				otherPictures.add( new ImageIcon( "t" + rnd + ".png" ) );
 				
