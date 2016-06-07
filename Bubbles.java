@@ -24,7 +24,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	JButton[] cards = new JButton[numCards];
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
 	ArrayList<Integer> temp = new ArrayList<Integer>();
-	ArrayList<ImageIcon> backs = new ArrayList<ImageIcon>();
 	Random r = new Random();
 	
 	public Bubbles() {
@@ -122,17 +121,17 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		switch(s){
 		case "Classic":
 			for( int w = 0; w < numCards; w++ ){
-				cards[w].setSelectedIcon( backs.get(0) );
+				cards[w].setSelectedIcon( new ImageIcon("b0.jpg") );
 			}
 			break;
 		case "Stars":
 			for( int w = 0; w < numCards; w++ ){
-				cards[w].setSelectedIcon( backs.get(1) );
+				cards[w].setSelectedIcon( new ImageIcon("b1.jpg") );
 			}
 			break;
 		case "Flowers":
 			for( int w = 0; w < numCards; w++ ){
-				cards[w].setSelectedIcon( backs.get(2) );
+				cards[w].setSelectedIcon( new ImageIcon("b2.jpg") );
 			}
 			break;
 		}
