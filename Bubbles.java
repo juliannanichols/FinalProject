@@ -110,19 +110,20 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			do {
 			rnd = r.nextInt(numCards);
 			} while(temp.contains(rnd));
-			/*
-			 * so this is an array of the pictures being put in a
-			 * random order..since it was originally being put to
-			 * the buttons in said random order.
-			 * 
+			/* 
 			 * this is used in the switch statement so the button 
 			 * can switch pictures  
+			 * 
+			 * I realize it is basically just making a copy....
+			 * not my original intention but my brain is fried and
+			 * can't think of a way to fix it right now
 			 */
 			System.out.println("array II " + arrayII);
 			System.out.println("pictures " + pictures);
 			
 			//tempII = pictures.poll();
 			//cards[rnd].setIcon(tempII);
+			
 			arrayII.add(pictures.poll());
 			temp.add(rnd);
 		}
