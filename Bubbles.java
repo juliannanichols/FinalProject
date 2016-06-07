@@ -85,7 +85,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			//temporary happiness!
 			
 			cards[i] = new JButton( "" );
-			
         	cards[i].setActionCommand( "Card" );
         	cards[i].addActionListener( this );
         	matching.add( cards[i] );
@@ -121,7 +120,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		switch(s){
 		case "Classic":
 			for( int w = 0; w < numCards; w++ ){
-				cards[w].setSelectedIcon( new ImageIcon("b0.jpg") );
+				cards[w].setSelectedIcon( new ImageIcon("b2.jpg") );
 			}
 			break;
 		case "Stars":
@@ -131,7 +130,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			break;
 		case "Flowers":
 			for( int w = 0; w < numCards; w++ ){
-				cards[w].setSelectedIcon( new ImageIcon("b2.jpg") );
+				cards[w].setSelectedIcon( new ImageIcon("b0.jpg") );
 			}
 			break;
 		}
