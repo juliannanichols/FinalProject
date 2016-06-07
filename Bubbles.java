@@ -25,6 +25,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
 	ArrayList<Integer> temp = new ArrayList<Integer>();
 	Random r = new Random();
+	ImageIcon tempII;
+	ArrayList<ImageIcon> arrayII = new ArrayList<ImageIcon>();
 	
 	public Bubbles() {
 		super();
@@ -85,7 +87,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			//temporary happiness!
 			
 			cards[i] = new JButton( "" );
-        	cards[i].setActionCommand( "Card" );
+        	cards[i].setActionCommand( "Card " + i );
         	cards[i].addActionListener( this );
         	matching.add( cards[i] );
         }
@@ -107,7 +109,9 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			do {
 			rnd = r.nextInt(numCards);
 			} while(temp.contains(rnd));
-			cards[rnd].setIcon(pictures.poll());
+			arrayII.add(pictures.poll());
+			//tempII = pictures.poll();
+			//cards[rnd].setIcon(tempII);
 			temp.add(rnd);
 		}
 	}
@@ -168,8 +172,58 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	        }
 			repaint();
 			break; //break for "number" block
-		case "Card":
-			
+		case "Card 0":
+			tempII = arrayII.get(0);
+			cards[0].setIcon(tempII);
+			break;
+		case "Card 1":
+			tempII = arrayII.get(1);
+			cards[1].setIcon(tempII);
+			break;
+		case "Card 2":
+			tempII = arrayII.get(2);
+			cards[2].setIcon(tempII);
+			break;	
+		case "Card 3":
+			tempII = arrayII.get(3);
+			cards[3].setIcon(tempII);
+			break;
+		case "Card 4":
+			tempII = arrayII.get(4);
+			cards[4].setIcon(tempII);
+			break;	
+		case "Card 5":
+			tempII = arrayII.get(5);
+			cards[5].setIcon(tempII);
+			break;
+		case "Card 6":
+			break;	
+		case "Card 7":
+			break;
+		case "Card 8":
+			break;	
+		case "Card 9":
+			break;
+		case "Card 10":
+			break;	
+		case "Card 11":
+			break;
+		case "Card 12":
+			break;	
+		case "Card 13":
+			break;
+		case "Card 14":
+			break;	
+		case "Card 15":
+			break;
+		case "Card 16":
+			break;
+		case "Card 17":
+			break;
+		case "Card 18":
+			break;	
+		case "Card 19":
+			break;
 		}
 	}
 
