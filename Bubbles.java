@@ -108,7 +108,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			rnd = r.nextInt(numCards);
 			} while(temp.contains(rnd));
 			cards[rnd].setIcon(pictures.poll());
-			
 			temp.add(rnd);
 		}
 	}
@@ -120,17 +119,17 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		switch(s){
 		case "Classic":
 			for( int w = 0; w < numCards; w++ ){
-				cards[w].setSelectedIcon( new ImageIcon("b2.jpg") );
+				cards[w].setIcon( new ImageIcon("b2.jpg") );
 			}
 			break;
 		case "Stars":
 			for( int w = 0; w < numCards; w++ ){
-				cards[w].setSelectedIcon( new ImageIcon("b1.jpg") );
+				cards[w].setIcon( new ImageIcon("b1.jpg") );
 			}
 			break;
 		case "Flowers":
 			for( int w = 0; w < numCards; w++ ){
-				cards[w].setSelectedIcon( new ImageIcon("b0.jpg") );
+				cards[w].setIcon( new ImageIcon("b0.jpg") );
 			}
 			break;
 		}

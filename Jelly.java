@@ -9,6 +9,8 @@ import javax.swing.*;
  */
 public class Jelly {
 	
+	static boolean visibility = false;
+	
 	/**
      * @param args the command line arguments
      */
@@ -22,11 +24,13 @@ public class Jelly {
     	
 //        Bubbles myFrame = new Bubbles();
 //        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); //so it fills whole screen
+    	
         input = (String) JOptionPane.showInputDialog(null, "Pick which deck you would like to play with..",
 				"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, switchDeck, switchDeck[0]);
 		pictures = but.makeArray(input, numCards);
 		// this is what's actually causing the NullPointer to be thrown, but I don't know why...
 		// I checked, and pictures is not empty, so setButtons should be receiving the arrayDeque
 		bubble.setButtons(pictures);
+		bubble.setBack("Classic");
     }
 }
