@@ -24,6 +24,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	JButton[] cards = new JButton[numCards];
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
 	ArrayList<Integer> temp = new ArrayList<Integer>();
+	ArrayList<ImageIcon> backs = new ArrayList<ImageIcon>();
 	Random r = new Random();
 	
 	public Bubbles() {
@@ -117,11 +118,24 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	/**
 	 * This is for setting the back of the "cards".
 	 */
-	public void setBack( ImageIcon[] images ) {
-		// biscuits, I forgot that we don't have pictures for the back yet
-		//switch(){
-		//case "":
-	//	}
+	public void setBack( String s ) {
+		switch(s){
+		case "Classic":
+			for( int w = 0; w < numCards; w++ ){
+				cards[w].setSelectedIcon( backs.get(0) );
+			}
+			break;
+		case "Stars":
+			for( int w = 0; w < numCards; w++ ){
+				cards[w].setSelectedIcon( backs.get(1) );
+			}
+			break;
+		case "Flowers":
+			for( int w = 0; w < numCards; w++ ){
+				cards[w].setSelectedIcon( backs.get(2) );
+			}
+			break;
+		}
 	}
 	
 	/**
@@ -137,15 +151,18 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			// this is what's actually causing the NullPointer to be thrown, but I don't know why...
 			// I checked, and pictures is not empty, so setButtons should be receiving the arrayDeque
 			setButtons(pictures);
+			repaint();
 			break; //break for "switch deck" block
 		case "Card Back":
 			input = (String) JOptionPane.showInputDialog(null, "Pick which card back you would like to use..",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, cardBack, cardBack[0]);
+			repaint();
 			break; //break for "card back" block	
 		case "Number":
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[0]);
 			numCards = Integer.parseInt(input); // parsing the string to an int
+			repaint();
 			break; //break for "number" block
 		case "Card":
 			
