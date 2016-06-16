@@ -28,6 +28,14 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	ImageIcon tempII; //temporary image icon
 	ImageIcon tempCB; //temporary card back
 	ArrayList<ImageIcon> arrayII = new ArrayList<ImageIcon>(numCards);
+	ImageIcon pic1 = null;
+	ImageIcon pic2;
+	//I used 20 because the max number card we can have is 19
+	//It's my version of null...probably not the best way to
+	//do this but you know.........
+	int pickedCard1 = 20;
+	int pickedCard2;
+	
 	
 	public Bubbles() {
 		super();
@@ -120,8 +128,12 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			 * not my original intention but my brain is fried and
 			 * can't think of a way to fix it right now
 			 */
+			
+			/*
+			this was just a check
 			System.out.println("array II " + arrayII);
 			System.out.println("pictures " + pictures);
+			*/
 			
 			//tempII = pictures.poll();
 			//cards[rnd].setIcon(tempII);
@@ -158,6 +170,23 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			}
 			break;
 		}
+	}
+	
+	/**
+	 * Compare two cards
+	 */
+	public void compare(ImageIcon icon1, ImageIcon icon2, int c1, int c2) {
+		System.out.println("in compare method");
+		if(icon1 == icon2) {
+			cards[c1].setEnabled(false);
+			cards[c2].setEnabled(false);
+		} else {
+			cards[c1].setIcon(tempCB);
+			cards[c2].setIcon(tempCB);
+		}
+		
+		pic1 = null;
+		pickedCard1 = 20;
 	}
 	
 	/**
@@ -210,6 +239,16 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			if(cards[0].getIcon() == tempCB) {
 				tempII = arrayII.get(0);
 				cards[0].setIcon(tempII);
+				
+				if(pic1 == null && pickedCard1 == 20) {
+					pic1 = tempII;
+					pickedCard1 = 0; 
+				} else {
+					pic2 = tempII;
+					pickedCard2 = 0;
+					compare(pic1, pic2, pickedCard1, pickedCard2);
+				}
+				
 			} else {
 				cards[0].setIcon(tempCB);
 			}
@@ -219,6 +258,16 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			if(cards[1].getIcon() == tempCB) {
 				tempII = arrayII.get(1);
 				cards[1].setIcon(tempII);
+				
+				if(pic1 == null && pickedCard1 == 20) {
+					pic1 = tempII;
+					pickedCard1 = 1; 
+				} else {
+					pic2 = tempII;
+					pickedCard2 = 1;
+					compare(pic1, pic2, pickedCard1, pickedCard2);
+				}
+				
 			} else {
 				cards[1].setIcon(tempCB);
 			}
@@ -226,32 +275,72 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			break;
 		case "Card 2":
 			if(cards[2].getIcon() == tempCB) {
-			tempII = arrayII.get(2);
-			cards[2].setIcon(tempII);
+				tempII = arrayII.get(2);
+				cards[2].setIcon(tempII);
+				
+				if(pic1 == null && pickedCard1 == 20) {
+					pic1 = tempII;
+					pickedCard1 = 2; 
+				} else {
+					pic2 = tempII;
+					pickedCard2 = 2;
+					compare(pic1, pic2, pickedCard1, pickedCard2);
+				}
+				
 			} else {
 				cards[2].setIcon(tempCB);
 			}
 			break;	
 		case "Card 3":
 			if(cards[3].getIcon() == tempCB) {
-			tempII = arrayII.get(3);
-			cards[3].setIcon(tempII);
+				tempII = arrayII.get(3);
+				cards[3].setIcon(tempII);
+				
+				if(pic1 == null && pickedCard1 == 20) {
+					pic1 = tempII;
+					pickedCard1 = 3; 
+				} else {
+					pic2 = tempII;
+					pickedCard2 = 3;
+					compare(pic1, pic2, pickedCard1, pickedCard2);
+				}
+				
 			} else {
 				cards[3].setIcon(tempCB);
 			}
 			break;
 		case "Card 4":
 			if(cards[4].getIcon() == tempCB) {
-			tempII = arrayII.get(4);
-			cards[4].setIcon(tempII);
+				tempII = arrayII.get(4);
+				cards[4].setIcon(tempII);
+				
+				if(pic1 == null && pickedCard1 == 20) {
+					pic1 = tempII;
+					pickedCard1 = 4; 
+				} else {
+					pic2 = tempII;
+					pickedCard2 = 4;
+					compare(pic1, pic2, pickedCard1, pickedCard2);
+				}
+				
 			} else {
 				cards[4].setIcon(tempCB);
 			}
 			break;	
 		case "Card 5":
 			if(cards[5].getIcon() == tempCB) {
-			tempII = arrayII.get(5);
-			cards[5].setIcon(tempII);
+				tempII = arrayII.get(5);
+				cards[5].setIcon(tempII);
+				
+				if(pic1 == null && pickedCard1 == 20) {
+					pic1 = tempII;
+					pickedCard1 = 5; 
+				} else {
+					pic2 = tempII;
+					pickedCard2 = 5;
+					compare(pic1, pic2, pickedCard1, pickedCard2);
+				}
+				
 			} else {
 				cards[5].setIcon(tempCB);
 			}
