@@ -19,20 +19,23 @@ public class Butter extends ArrayDeque<ImageIcon>{
 	 * This method puts all the pictures into each
 	 * corresponding array
 	 */
-	public ArrayDeque<ImageIcon> makeArray(String name, int numCards) {
+	public ArrayDeque<ImageIcon> makeArray(String name, int numCard) {
 		
-		ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards);
+		ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCard);
 		ArrayDeque<ImageIcon> otherPictures = pictures.clone();
 		
 		switch(name){
 		case "Animals":
-			for( int i = 0; i < numCards/2; i++){
+			
+			//so I took out the numCard/2....and it works now..just so you know
+			
+			for( int i = 0; i < numCard; i++){
 				// May work, maybe not. The 9 is there so that the array will pick from 0-9 hopefully. 
 				// Thanks stackOverflow :D
 				int rnd = new Random().nextInt(9);
 				
 				do {
-					rnd = r.nextInt(numCards);
+					rnd = r.nextInt(numCard);
 					
 					} while(temp.contains(rnd));
 					
@@ -51,14 +54,16 @@ public class Butter extends ArrayDeque<ImageIcon>{
 					pictures.add( otherPictures.poll() );
 				}
 	        }
+			
+			System.out.println("From make array method " + pictures);
 			break;
 			
 		case "Plants": // see Animals for cool little commenty things
-			for( int i = 0; i < numCards/2; i++){
+			for( int i = 0; i < numCard; i++){
 				int rnd = new Random().nextInt(9);
 				
 				do {
-					rnd = r.nextInt(numCards);
+					rnd = r.nextInt(numCard);
 					
 					} while(temp.contains(rnd));
 					
@@ -76,11 +81,11 @@ public class Butter extends ArrayDeque<ImageIcon>{
 			break;
 		
 		case "Traditional":
-			for( int i = 0; i < numCards/2; i++){
+			for( int i = 0; i < numCard; i++){
 				int rnd = new Random().nextInt(9);
 				
 				do {
-					rnd = r.nextInt(numCards);
+					rnd = r.nextInt(numCard);
 					
 					} while(temp.contains(rnd));
 					

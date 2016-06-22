@@ -19,7 +19,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	String input = null; // so the user can have options
 	Potato matching = new Potato(); // for potato things. Mostly adding buttons to the JPanel in this JFrame
 	Butter but = new Butter(); // so we can call methods from butter
-	int numCards = 6; // 6 is default
+	int numCards = 10; // 6 is default
 	JButton button; // THE button
 	JButton[] cards = new JButton[numCards];
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
@@ -37,6 +37,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	int pickedCard2;
 	ImageIcon anotherVariable;
 	Object[] anotherTempArray;
+	int dog;
 	
 	
 	public Bubbles() {
@@ -117,7 +118,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 */
 	public void setButtons( ArrayDeque<ImageIcon> pictures ) {
 		int rnd;
-		int random;
 		for( int w = 0; w < numCards; w++ ) {
 			do {
 			rnd = r.nextInt(numCards);
@@ -135,11 +135,20 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			//tempII = pictures.poll();
 			//cards[rnd].setIcon(tempII);
 			
-			cards[rnd].setIcon(pictures.poll());
+			//why wont it pick the next one..
+			//it's like doing one and deleting both of that kind
 			
-			arrayII.add(pictures.poll());
+			
+			
+			tempII = pictures.poll();
+			cards[rnd].setIcon(tempII);
+			
+			arrayII.add(tempII);
 			temp.add(rnd);
 			
+			System.out.println("rnd = " + rnd);
+			System.out.println("tempII = " + tempII);
+			System.out.println("pictures = " + pictures);
 			}
 	}
 	
@@ -187,6 +196,40 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	}
 	
 	/**
+	 * This is to try to condense code..avoid a lot of repeat code
+	 */
+	public void whatToDo(int cats) {
+		
+		/*
+		 * if card 0 is clicked..
+		 * this puts the randomly selected image
+		 * that was assigned there (in setButtons)
+		 * onto the button
+		 * 
+		 * now it's checking if the back is already set
+		 * if it is then it will set the animal (or whatever)
+		 * picture..
+		 * if it isn't then the card back will be set
+		 */
+		if(cards[cats].getIcon() == tempCB) {
+			tempII = arrayII.get(cats);
+			cards[cats].setIcon(tempII);
+			
+			if(pic1 == null && pickedCard1 == 20) {
+				pic1 = tempII;
+				pickedCard1 = cats; 
+			} else {
+				pic2 = tempII;
+				pickedCard2 = cats;
+				compare(pic1, pic2, pickedCard1, pickedCard2);
+			}
+			
+		} else {
+			cards[cats].setIcon(tempCB);
+		}
+	}
+	
+	/**
 	 * Required and super useful actionPerformed method!
 	 */
 	public void actionPerformed(ActionEvent e) {
@@ -226,155 +269,84 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			repaint();
 			break; //break for "number" block
 		case "Card 0":
-			/*
-			 * if card 0 is clicked..
-			 * this puts the randomly selected image
-			 * that was assigned there (in setButtons)
-			 * onto the button
-			 * 
-			 * now it's checking if the back is already set
-			 * if it is then it will set the animal (or whatever)
-			 * picture..
-			 * if it isn't then the card back will be set
-			 * 
-			 * not the most efficient but it works!!!
-			 */
-			if(cards[0].getIcon() == tempCB) {
-				tempII = arrayII.get(0);
-				cards[0].setIcon(tempII);
-				
-				if(pic1 == null && pickedCard1 == 20) {
-					pic1 = tempII;
-					pickedCard1 = 0; 
-				} else {
-					pic2 = tempII;
-					pickedCard2 = 0;
-					compare(pic1, pic2, pickedCard1, pickedCard2);
-				}
-				
-			} else {
-				cards[0].setIcon(tempCB);
-			}
-			
+			dog = 0;
+			whatToDo(dog);
 			break;
 		case "Card 1":
-			if(cards[1].getIcon() == tempCB) {
-				tempII = arrayII.get(1);
-				cards[1].setIcon(tempII);
-				
-				if(pic1 == null && pickedCard1 == 20) {
-					pic1 = tempII;
-					pickedCard1 = 1; 
-				} else {
-					pic2 = tempII;
-					pickedCard2 = 1;
-					compare(pic1, pic2, pickedCard1, pickedCard2);
-				}
-				
-			} else {
-				cards[1].setIcon(tempCB);
-			}
-			
+			dog = 1;
+			whatToDo(dog);
 			break;
 		case "Card 2":
-			if(cards[2].getIcon() == tempCB) {
-				tempII = arrayII.get(2);
-				cards[2].setIcon(tempII);
-				
-				if(pic1 == null && pickedCard1 == 20) {
-					pic1 = tempII;
-					pickedCard1 = 2; 
-				} else {
-					pic2 = tempII;
-					pickedCard2 = 2;
-					compare(pic1, pic2, pickedCard1, pickedCard2);
-				}
-				
-			} else {
-				cards[2].setIcon(tempCB);
-			}
+			dog = 2;
+			whatToDo(dog);
 			break;	
 		case "Card 3":
-			if(cards[3].getIcon() == tempCB) {
-				tempII = arrayII.get(3);
-				cards[3].setIcon(tempII);
-				
-				if(pic1 == null && pickedCard1 == 20) {
-					pic1 = tempII;
-					pickedCard1 = 3; 
-				} else {
-					pic2 = tempII;
-					pickedCard2 = 3;
-					compare(pic1, pic2, pickedCard1, pickedCard2);
-				}
-				
-			} else {
-				cards[3].setIcon(tempCB);
-			}
+			dog = 3;
+			whatToDo(dog);
 			break;
 		case "Card 4":
-			if(cards[4].getIcon() == tempCB) {
-				tempII = arrayII.get(4);
-				cards[4].setIcon(tempII);
-				
-				if(pic1 == null && pickedCard1 == 20) {
-					pic1 = tempII;
-					pickedCard1 = 4; 
-				} else {
-					pic2 = tempII;
-					pickedCard2 = 4;
-					compare(pic1, pic2, pickedCard1, pickedCard2);
-				}
-				
-			} else {
-				cards[4].setIcon(tempCB);
-			}
+			dog = 04;
+			whatToDo(dog);
 			break;	
 		case "Card 5":
-			if(cards[5].getIcon() == tempCB) {
-				tempII = arrayII.get(5);
-				cards[5].setIcon(tempII);
-				
-				if(pic1 == null && pickedCard1 == 20) {
-					pic1 = tempII;
-					pickedCard1 = 5; 
-				} else {
-					pic2 = tempII;
-					pickedCard2 = 5;
-					compare(pic1, pic2, pickedCard1, pickedCard2);
-				}
-				
-			} else {
-				cards[5].setIcon(tempCB);
-			}
+			dog = 5;
+			whatToDo(dog);
 			break;
 		case "Card 6":
+			dog = 6;
+			whatToDo(dog);
 			break;	
 		case "Card 7":
+			dog = 7;
+			whatToDo(dog);
 			break;
 		case "Card 8":
+			dog = 8;
+			whatToDo(dog);
 			break;	
 		case "Card 9":
+			dog = 9;
+			whatToDo(dog);
 			break;
 		case "Card 10":
+			dog = 10;
+			whatToDo(dog);
 			break;	
 		case "Card 11":
+			dog = 11;
+			whatToDo(dog);
 			break;
 		case "Card 12":
+			dog = 12;
+			whatToDo(dog);
 			break;	
 		case "Card 13":
+			dog = 13;
+			whatToDo(dog);
 			break;
 		case "Card 14":
+			dog = 14;
+			whatToDo(dog);
 			break;	
 		case "Card 15":
+			dog = 15;
+			whatToDo(dog);
 			break;
 		case "Card 16":
+			dog = 16;
+			whatToDo(dog);
 			break;
 		case "Card 17":
+			dog = 17;
+			whatToDo(dog);
 			break;
 		case "Card 18":
+			dog = 18;
+			whatToDo(dog);
 			break;	
 		case "Card 19":
+			dog = 19;
+			whatToDo(dog);
 			break;
 		}
 	}
