@@ -17,7 +17,7 @@ public class Jelly {
     public static void main(String[] args) {
     	String input = null; // so the user can have options
     	Butter but = new Butter();
-       	int numCards = 6; // 6 is default
+       	int numCards = 8; // 20 because that is the max number of cards
     	Bubbles bubble = new Bubbles();
     	String [] switchDeck = { "Animals" , "Plants" , "Traditional" }; // deck options
     	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!

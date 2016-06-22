@@ -12,22 +12,59 @@ import javax.swing.*;
  */
 public class Bubbles extends JFrame implements ActionListener, Serializable {
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * reason pictures aren't coming up shuffled is because of line 234 and 238
+	 * I made it so no matter what it gets set to it is pulling 
+	 * the picture at the same index as the card..
+	 * ie: if card 0 is picked it will pull
+	 * the picture at index zero..even if the fifth picture was set to it
+	 * then if card 1 is picked then it will pull the picture at index one
+	 * >:( ugh
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private static final long serialVersionUID = 1L;
-	String [] numberCards = { "6" , "8" , "10" , "12" , "14" , "16" , "18" , "20" }; // card amount options
+	
+	static String [] numberCards = { "6" , "8" , "10" , "12" , "14" , "16" , "18" , "20" }; // card amount options
 	String [] switchDeck = { "Animals" , "Plants" , "Traditional" }; // deck options
 	String [] cardBack = { "Classic" , "Stars" , "Flowers" }; // card back options
-	String input = null; // so the user can have options
-	Potato matching = new Potato(); // for potato things. Mostly adding buttons to the JPanel in this JFrame
-	Butter but = new Butter(); // so we can call methods from butter
-	int numCards = 10; // 6 is default
-	JButton button; // THE button
 	JButton[] cards = new JButton[numCards];
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); // deque of images!
 	ArrayList<Integer> temp = new ArrayList<Integer>();
-	Random r = new Random();
+	//ImageIcon[] arrayII = new ImageIcon[numCards];
+	ArrayList<ImageIcon> arrayII = new ArrayList<ImageIcon>(numCards); // so the card can flip back and forth
+	
+	String input = null; // so the user can have options
+	Potato matching = new Potato(); // for potato things. Mostly adding buttons to the JPanel in this JFrame
+	Butter but = new Butter(); // so we can call methods from butter
+	static int numCards = 8; // 6 is default
+	JButton button; // THE button
 	ImageIcon tempII; //temporary image icon
-	ImageIcon tempCB; //temporary card back
-	ArrayList<ImageIcon> arrayII = new ArrayList<ImageIcon>(numCards);
+	ImageIcon back; // card back
 	ImageIcon pic1 = null;
 	ImageIcon pic2;
 	//I used 20 because the max number card we can have is 19
@@ -38,7 +75,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	ImageIcon anotherVariable;
 	Object[] anotherTempArray;
 	int dog;
-	
+	Random r = new Random();
 	
 	public Bubbles() {
 		super();
@@ -123,22 +160,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			rnd = r.nextInt(numCards);
 
 			} while(temp.contains(rnd));
-			/* 
-			 * this is used in the switch statement so the button 
-			 * can switch pictures  
-			 * 
-			 * I realize it is basically just making a copy....
-			 * not my original intention but my brain is fried and
-			 * can't think of a way to fix it right now
-			 */
-			
-			//tempII = pictures.poll();
-			//cards[rnd].setIcon(tempII);
-			
-			//why wont it pick the next one..
-			//it's like doing one and deleting both of that kind
-			
-			
 			
 			tempII = pictures.poll();
 			cards[rnd].setIcon(tempII);
@@ -149,6 +170,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			System.out.println("rnd = " + rnd);
 			System.out.println("tempII = " + tempII);
 			System.out.println("pictures = " + pictures);
+			System.out.println("arrayII = " + arrayII);
 			}
 	}
 	
@@ -158,19 +180,19 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	public void setBack( String s ) {
 		switch(s){
 		case "Classic":
-			tempCB = new ImageIcon("b2.jpg");
+			back = new ImageIcon("b2.jpg");
 			for( int w = 0; w < numCards; w++ ){
 				cards[w].setIcon( new ImageIcon("b2.jpg") );
 			}
 			break;
 		case "Stars":
-			tempCB = new ImageIcon("b1.jpg");
+			back = new ImageIcon("b1.jpg");
 			for( int w = 0; w < numCards; w++ ){
 				cards[w].setIcon( new ImageIcon("b1.jpg") );
 			}
 			break;
 		case "Flowers":
-			tempCB = new ImageIcon("b0.jpg");
+			back = new ImageIcon("b0.jpg");
 			for( int w = 0; w < numCards; w++ ){
 				cards[w].setIcon( new ImageIcon("b0.jpg") );
 			}
@@ -187,8 +209,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			cards[c1].setEnabled(false);
 			cards[c2].setEnabled(false);
 		} else {
-			cards[c1].setIcon(tempCB);
-			cards[c2].setIcon(tempCB);
+			cards[c1].setIcon(back);
+			cards[c2].setIcon(back);
 		}
 		
 		pic1 = null;
@@ -199,35 +221,61 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 * This is to try to condense code..avoid a lot of repeat code
 	 */
 	public void whatToDo(int cats) {
-		
-		/*
-		 * if card 0 is clicked..
-		 * this puts the randomly selected image
-		 * that was assigned there (in setButtons)
-		 * onto the button
-		 * 
-		 * now it's checking if the back is already set
-		 * if it is then it will set the animal (or whatever)
-		 * picture..
-		 * if it isn't then the card back will be set
-		 */
-		if(cards[cats].getIcon() == tempCB) {
+	
+		if(cards[cats].getIcon() == back) {
+			/*
+			 * enters if the card's back is shown
+			 */
+			
+			/*
+			 * setting the temporary variable to the picture
+			 * that has been assigned to that card 
+			 */
 			tempII = arrayII.get(cats);
+			/*
+			 * setting the card 
+			 */
 			cards[cats].setIcon(tempII);
 			
 			if(pic1 == null && pickedCard1 == 20) {
+				/*
+				 * enters here if this is the first picture picked
+				 * since we only want to cards flipped at any given time
+				 */
 				pic1 = tempII;
 				pickedCard1 = cats; 
 			} else {
+				/*
+				 * enters here if there is already a card picked
+				 * 
+				 */
 				pic2 = tempII;
 				pickedCard2 = cats;
 				compare(pic1, pic2, pickedCard1, pickedCard2);
 			}
 			
 		} else {
-			cards[cats].setIcon(tempCB);
+			/*
+			 * enters here if the picture is shown
+			 */
+			cards[cats].setIcon(back);
 		}
 	}
+	
+//	/**
+//	 * For number of cards
+//	 */
+//	public void forCardNumber(int goat) {
+//		
+//		matching.removeAll();
+//		
+//		for( int i = 0; i < goat; i++) {
+//			cards[i] = new JButton( "" );
+//        	cards[i].setActionCommand( "Card" );
+//        	cards[i].addActionListener( this );
+//        	matching.add( cards[i] );
+//        }
+//	}
 	
 	/**
 	 * Required and super useful actionPerformed method!
@@ -259,6 +307,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			input = (String) JOptionPane.showInputDialog(null, "How many cards you would you like to play with?",
 					"The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, numberCards,numberCards[0]);
 			numCards = Integer.parseInt(input); // parsing the string to an int
+			
+			//forCardNumber(numCards);
 			
 			for( int i = 0; i < numCards; i++) {
 				cards[i] = new JButton( "" );
