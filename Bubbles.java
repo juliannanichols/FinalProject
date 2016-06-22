@@ -35,6 +35,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	//do this but you know.........
 	int pickedCard1 = 20;
 	int pickedCard2;
+	ImageIcon anotherVariable;
+	Object[] anotherTempArray;
 	
 	
 	public Bubbles() {
@@ -115,6 +117,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 */
 	public void setButtons( ArrayDeque<ImageIcon> pictures ) {
 		int rnd;
+		int random;
 		for( int w = 0; w < numCards; w++ ) {
 			do {
 			rnd = r.nextInt(numCards);
@@ -129,19 +132,13 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			 * can't think of a way to fix it right now
 			 */
 			
-			/*
-			this was just a check
-			System.out.println("array II " + arrayII);
-			System.out.println("pictures " + pictures);
-			*/
-			
 			//tempII = pictures.poll();
 			//cards[rnd].setIcon(tempII);
 			
+			cards[rnd].setIcon(pictures.poll());
 			
 			arrayII.add(pictures.poll());
 			temp.add(rnd);
-			
 			
 			}
 	}
@@ -176,7 +173,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	 * Compare two cards
 	 */
 	public void compare(ImageIcon icon1, ImageIcon icon2, int c1, int c2) {
-		System.out.println("in compare method");
+		//System.out.println("in compare method");
 		if(icon1 == icon2) {
 			cards[c1].setEnabled(false);
 			cards[c2].setEnabled(false);
@@ -202,6 +199,12 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			// this is what's actually causing the NullPointer to be thrown, but I don't know why...
 			// I checked, and pictures is not empty, so setButtons should be receiving the arrayDeque
 			setButtons(pictures);
+			
+			/*
+			 * do we need this repaint(); ??
+			 * I commented it out and it still worked the same ...? not sure 
+			 */
+			
 			repaint();
 			break; //break for "switch deck" block
 		case "Card Back":
