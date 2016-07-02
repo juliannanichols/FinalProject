@@ -54,8 +54,8 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	//I used 20 because the max number card we can have is 19
 	//It's my version of null...probably not the best way to
 	//do this but you know.........
-	int pickedCard1 = 20;
-	int pickedCard2;
+	int card1 = 20;
+	int card2;
 	
 	//
 	int dog;
@@ -185,61 +185,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	}
 	
 	/**
-	 * Compare two cards
-	 */
-	public void compare(ImageIcon icon1, ImageIcon icon2, int c1, int c2) {
-		if(icon1 == icon2) {
-			cards[c1].setEnabled(false);
-			cards[c2].setEnabled(false);
-		} else {
-			cards[c1].setIcon(back);
-			cards[c2].setIcon(back);
-		}
-		
-		pic1 = null;
-		pickedCard1 = 20;
-	}
-	
-	/**
-	 * When a card is clicked, this tells it what to do
-	 * ie: if the card back is face up then it will show the picture
-	 * and vice versa
-	 */
-	public void whatToDo(int cat) {
-	
-		if(cards[cat].getIcon() == back) {
-			// enters if the card's back is shown
-			 
-			/*
-			 * setting the temporary variable to the picture
-			 * that has been assigned to that card 
-			 */
-			tempII = arrayII.get(cat);
-			
-			// setting the card 
-			cards[cat].setIcon(tempII);
-			
-			if(pic1 == null && pickedCard1 == 20) {
-				// enters if this is the first picture picked
-				// since we only want two cards face up at any given time 
-				pic1 = tempII;
-				pickedCard1 = cat; 
-			} else {
-				// enters if there is already a card picked
-				pic2 = tempII;
-				pickedCard2 = cat;
-				compare(pic1, pic2, pickedCard1, pickedCard2);
-			}
-			
-		} else {
-			/*
-			 * enters if the picture is shown
-			 */
-			cards[cat].setIcon(back);
-		}
-	}
-	
-	/**
 	 * Required and super useful actionPerformed method!
 	 */
 	public void actionPerformed(ActionEvent e) {
@@ -276,5 +221,71 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			break;
 		}
 	}
-
+	
+	/**
+	 * When a card is clicked, this tells it what to do
+	 * ie: if the card back is face up then it will show the picture
+	 * and vice versa
+	 */
+	public void whatToDo(int cat) {
+	
+		if(cards[cat].getIcon() == back) {
+			// enters if the card's back is shown
+			 
+			/*
+			 * setting the temporary variable to the picture
+			 * that has been assigned to that card 
+			 */
+			tempII = arrayII.get(cat);
+			
+			// setting the card 
+			cards[cat].setIcon(tempII);
+			
+			if(pic1 == null && card1 == 20) {
+				// enters if this is the first picture picked
+				// since we only want two cards face up at any given time 
+				pic1 = tempII;
+				card1 = cat; 
+			} else {
+				// enters if there is already a card picked
+				pic2 = tempII;
+				card2 = cat;
+				compare(pic1, pic2, card1, card2);
+			}
+			
+		} else {
+			/*
+			 * enters if the picture is shown
+			 */
+			cards[cat].setIcon(back);
+		}
+	}
+	
+	/**
+	 * Compare two cards
+	 */
+	public void compare(ImageIcon icon1, ImageIcon icon2, int c1, int c2) {
+		if(icon1 == icon2) {
+			// if they are the same
+			cards[c1].setEnabled(false);
+			cards[c2].setEnabled(false);
+		} else {
+			// if they are different
+			
+			
+			//want to use this but this isn't the right place
+//			try {
+//				Thread.sleep(2000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+			
+			
+			cards[c1].setIcon(back);
+			cards[c2].setIcon(back);
+		}
+		
+		pic1 = null;
+		card1 = 20;
+	}
 }
