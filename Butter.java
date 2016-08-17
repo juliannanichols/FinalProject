@@ -13,8 +13,9 @@ public class Butter extends ArrayDeque<ImageIcon>{
 		
 	private static final long serialVersionUID = 1L;
 	
-	//keep track of the random numbers already picked
-	ArrayList<Integer> temp = new ArrayList<Integer>();
+	//keep track of the random numbers already picked (both ArrayLists)
+	ArrayList<Integer> tempPic = new ArrayList<Integer>();
+	ArrayList<Integer> tempButton = new ArrayList<Integer>();
 	Random r = new Random();
 
 	/**
@@ -25,25 +26,37 @@ public class Butter extends ArrayDeque<ImageIcon>{
 		
 		ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCard);
 		ArrayDeque<ImageIcon> otherPictures = pictures.clone();
+		int rndButton;
+		int rndPic;
 		
 		switch(name){
 		case "Animals":
 			for( int i = 0; i < numCard/2; i++){
 				// May work, maybe not. The 9 is there so that the array will pick from 0-9 hopefully. 
 				// Thanks stackOverflow :D
-				int rnd = new Random().nextInt(9);
-				
 				do {
-					rnd = r.nextInt(numCard);
-					
-					} while(temp.contains(rnd));
-					
-					temp.add(rnd);
+					rndPic = r.nextInt(9);
+				} while((rndPic > 9) & (tempPic.contains(rndPic))); 
+				//okay why doesn't this do while work...like I can't see what's wrong and why it isn't making sure both are true
+				//I don't want the number it chooses if it is greater than 9 or in the array (an array that is holding numbers
+				//THAT HAVE ALREADY BEEN PICKED
 				
-				otherPictures.add( new ImageIcon( "a" + rnd + ".jpg" ) );
+				System.out.println("rndPic = " + rndPic);
+				System.out.println("tempPic = " + tempPic);
+				
+				tempPic.add(rndPic);
+									
+				do {
+					rndButton = r.nextInt(numCard);
+					} while(tempButton.contains(rndButton));
+				
+					// added so we know what buttons already have a picture assigned
+					tempButton.add(rndButton);
+				
+				otherPictures.add( new ImageIcon( "a" + rndPic + ".jpg" ) );
 				
 				// Should prevent repeat pictures!
-				if( pictures.contains( new ImageIcon( "a" + rnd + ".jpg" )) ){
+				if( pictures.contains( new ImageIcon( "a" + rndPic + ".jpg" )) ){
 					i--; // so there will still be the correct number of cards
 				} else {
 					// Adds image to the end of the deque AND removes it from otherPictures!! 
@@ -57,18 +70,22 @@ public class Butter extends ArrayDeque<ImageIcon>{
 			
 		case "Plants": // see Animals for cool little commenty things
 			for( int i = 0; i < numCard/2; i++){
-				int rnd = new Random().nextInt(9);
+				do {
+					rndPic = r.nextInt(9);
+				} while(rndPic > 9 && tempPic.contains(rndPic));
+				
+				tempPic.add(rndPic);
 				
 				do {
-					rnd = r.nextInt(numCard);
+					rndButton = r.nextInt(numCard);
 					
-					} while(temp.contains(rnd));
+					} while(tempButton.contains(rndButton));
 					
-					temp.add(rnd);
+					tempButton.add(rndButton);
 					
-				otherPictures.add( new ImageIcon( "p" + rnd + ".jpg" ) );
+				otherPictures.add( new ImageIcon( "p" + rndPic + ".jpg" ) );
 				
-				if( pictures.contains( new ImageIcon( "p" + rnd + ".jpg" )) ){
+				if( pictures.contains( new ImageIcon( "p" + rndPic + ".jpg" )) ){
 					i--;
 				} else {
 					pictures.add( otherPictures.getFirst() );
@@ -79,19 +96,23 @@ public class Butter extends ArrayDeque<ImageIcon>{
 		
 		case "Traditional": // see Animals for cool little commenty things
 			for( int i = 0; i < numCard/2; i++){
-				int rnd = new Random().nextInt(9);
+				do {
+					rndPic = r.nextInt(9);
+				} while(rndPic > 9 && tempPic.contains(rndPic));
+				
+				tempPic.add(rndPic);
 				
 				do {
-					rnd = r.nextInt(numCard);
+					rndButton = r.nextInt(numCard);
 					
-					} while(temp.contains(rnd));
+					} while(tempButton.contains(rndButton));
 					
-					temp.add(rnd);
+					tempButton.add(rndButton);
 				
 				// the traditional pictures are png files, while the plant and animal are jpg files
-				otherPictures.add( new ImageIcon( "t" + rnd + ".png" ) );
+				otherPictures.add( new ImageIcon( "t" + rndPic + ".png" ) );
 				
-				if( pictures.contains( new ImageIcon( "t" + rnd + ".png" )) ){
+				if( pictures.contains( new ImageIcon( "t" + rndPic + ".png" )) ){
 					i--;
 				} else {
 					pictures.add( otherPictures.getFirst() );

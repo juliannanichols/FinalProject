@@ -14,17 +14,21 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	int numCards = 16;
+	
 	// card amount options
-	static String [] numberCards = { "6" , "8" , "10" , "12" , "14" , "16" , "18" , "20" };
+	String [] numberCards = { "6" , "8" , "10" , "12" , "14" , "16" , "18" , "20" };
 	
 	// deck options
 	String [] switchDeck = { "Animals" , "Plants" , "Traditional" };
 	
 	// card back options
 	String [] cardBack = { "Classic" , "Stars" , "Flowers" };
+	
+	// making an array of buttons (cards) the size of the number of cards chosen
 	JButton[] cards = new JButton[numCards];
 	
-	// deque of images!
+	// deque of images the size of the number of cards chosen
 	ArrayDeque<ImageIcon> pictures = new ArrayDeque<ImageIcon>(numCards); 
 	
 	// so the card can flip back and forth
@@ -39,7 +43,6 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	
 	// so we can call methods from butter
 	Butter but = new Butter();
-	static int numCards = 12;
 	//JButton button;
 	
 	//temporary image icon
@@ -48,17 +51,20 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 	// card back
 	ImageIcon back;
 
+	// first card that is picked
 	ImageIcon pic1 = null;
+	
+	// second card that is picked
 	ImageIcon pic2;
 	
-	//I used 20 because the max number card we can have is 19
+	//I used 20 because the max number of cards we can have
 	//It's my version of null...probably not the best way to
-	//do this but you know.........
+	//do this but you know..
 	int card1 = 20;
 	int card2;
 	
-	//
 	int dog;
+	
 	Random r = new Random();
 	
 	// used to make sure pictures are associated with the correct button
@@ -110,18 +116,15 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 		
 		//creating the buttons
 		for( int i = 0; i < numCards; i++) {
-			
 			cards[i] = new JButton( "" );
-			
 			cards[i].setActionCommand( "Card " + i );
         	cards[i].addActionListener( this );
         	matching.add( cards[i] );
         }
 		
 		this.setJMenuBar(menuBar);
-		this.setSize(600, 600);
-		this.setVisible(true); // setting the frame visible
-		
+		this.setSize(600, 600);	
+		this.setVisible(true);
 	}
 
 	/**
@@ -155,6 +158,7 @@ public class Bubbles extends JFrame implements ActionListener, Serializable {
 			}
 		// convert from array to arrayList
 		arrayII = new ArrayList<ImageIcon>(Arrays.asList(holding));
+		
 		System.out.print("arrayII = " + arrayII);
 	}
 	
